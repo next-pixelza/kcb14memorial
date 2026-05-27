@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The KCB14 Story | Kyle Clayton Barnes Memorial</title>
+    <!-- Google Fonts for striking, high-impact typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,700;0,900;1,900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- DESIGN SYSTEM & TOKENS --- */
+        :root {
+            --primary-red: #cc0000;
+            --dark-red: #8b0000;
+            --pure-black: #0a0a0a;
+            --card-black: #141414;
+            --pure-white: #ffffff;
+            --text-muted: #cccccc;
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--pure-black);
+            color: var(--pure-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- TYPOGRAPHY UTILITIES --- */
+        h1, h2, h3 {
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            font-weight: 900;
+        }
+
+        .profound-quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-red);
+            color: var(--pure-white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--pure-white);
+            color: var(--pure-black);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(204,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border-color: var(--pure-white);
+            color: var(--pure-white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--pure-white);
+            color: var(--pure-black);
+            transform: translateY(-3px);
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--pure-black);
+            padding: 20px 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(204, 0, 0, 0.3);
+        }
+
+        .logo img {
+            height: 60px;
+            display: block;
+            object-fit: contain;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--pure-white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition-smooth);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-red);
+            transition: var(--transition-smooth);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* --- INNER PAGE HERO --- */
+        .inner-hero {
+            position: relative;
+            padding: 120px 4% 80px 4%;
+            background: linear-gradient(180deg, #000000 0%, var(--dark-red) 100%);
+            text-align: center;
+            border-bottom: 4px solid var(--primary-red);
+        }
+
+        .inner-hero h1 {
+            font-size: 4rem;
+            line-height: 1;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        }
+
+        .inner-hero p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* --- HISTORY CONTENT SECTION --- */
+        .history-wrap {
+            padding: 80px 4%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .media-placeholder {
+            background-color: var(--card-black);
+            border: 1px solid #222;
+            height: 450px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 60px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            border-bottom: 5px solid var(--primary-red);
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .story-body {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+        }
+
+        .story-body p {
+            margin-bottom: 25px;
+        }
+
+        .story-body h2 {
+            color: var(--primary-red);
+            font-size: 2rem;
+            margin: 40px 0 20px 0;
+        }
+
+        /* --- SIDEBAR BIO METRICS --- */
+        .bio-sidebar {
+            background-color: var(--card-black);
+            border: 1px solid #1a1a1a;
+            padding: 30px;
+            border-radius: 6px;
+            height: fit-content;
+            border-top: 4px solid var(--primary-red);
+        }
+
+        .bio-sidebar h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #222;
+            padding-bottom: 10px;
+        }
+
+        .stat-item {
+            margin-bottom: 20px;
+        }
+
+        .stat-item label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--primary-red);
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .stat-item span {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--pure-white);
+        }
+
+        /* --- LEGACY VALUES SECTION --- */
+        .values-section {
+            background-color: var(--card-black);
+            padding: 80px 4%;
+            border-radius: 8px;
+            margin-top: 40px;
+            border: 1px solid #1a1a1a;
+            text-align: center;
+        }
+
+        .values-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            text-align: left;
+        }
+
+        .value-card h3 {
+            color: var(--primary-red);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .value-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* --- CTA STRIP --- */
+        .cta-strip {
+            text-align: center;
+            padding: 80px 4%;
+            background: linear-gradient(180deg, var(--pure-black) 0%, #111111 100%);
+            border-top: 1px solid #222;
+        }
+
+        .cta-strip h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--pure-black);
+            padding: 60px 4% 40px 4%;
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .footer-logo { margin-bottom: 25px; }
+        .footer-logo img { height: 80px; margin: 0 auto; object-fit: contain; }
+        .footer-tagline { font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 1.1rem; margin-bottom: 10px; }
+        .footer-sub { color: var(--text-muted); font-size: 0.85rem; letter-spacing: 1px; }
+
+        /* --- RESPONSIVE FIXES --- */
+        @media (max-width: 768px) {
+            .inner-hero h1 { font-size: 2.8rem; }
+            .story-grid { grid-template-columns: 1fr; gap: 40px; }
+            .media-placeholder { height: 280px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/Gemini_Generated_Image_hfo459hfo459hfo4-removebg-preview.png" alt="KCB14 Logo">
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html#history">Home</a></li>
+                <li><a href="index.html#event">Memorial Event</a></li>
+                <li><a href="index.html#lineup">Squad Sheet</a></li>
+                <li><a href="index.html#sponsorship">Sponsorship</a></li>
+                <li><a href="index.html#prizes">Raffles & Prizes</a></li>
+                <li><a href="index.html#items">Voice Your KCB memory</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- INNER PAGE HERO -->
+    <section class="inner-hero">
+        <h1>The #KCB14 Story</h1>
+        <p>Honoring the journey, the character, and the legacy of Kyle Clayton Barnes.</p>
+    </section>
+
+    <!-- MAIN HISTORY STORY LAYOUT -->
+    <main class="history-wrap">
+        
+        <!-- COMMEMORATIVE MEDIA PLAYER / ASSET PLACEHOLDER -->
+        <div class="media-placeholder">
+            [ Tribute Video / Historical Photo Gallery Asset ]
+        </div>
+
+        <div class="story-grid">
+            <!-- LEFT COLUMN: NARRATIVE -->
+            <div class="story-body">
+                <p class="profound-quote" style="font-size: 1.4rem; color: var(--primary-red); margin-bottom: 30px; line-height: 1.4;">
+                    "He played with an intensity that demanded your best, and lived with a kindness that earned your loyalty."
+                </p>
+                
+                <p>Kyle Clayton Barnes was a definitive cornerstone of our club alignment. Known across the region for his absolute relentlessness on the pitch and his unifying charisma off it, Kyle wore the number 14 jersey with a distinct sense of pride that spread to every member of the squad.</p>
+                
+                <p>His approach to the game was simple: give everything, back your brothers completely, and respect the crest. It was this exact blueprint that made him not only a formidable opponent to line up against, but a deeply trusted leader within our community walls.</p>
+
+                <h2>More Than A Number</h2>
+                <p>The transition of the number 14 from a standard squad marker to a symbol of communal resilience is a direct reflection of how Kyle lived. He was the anchor during high-stakes match frames, the first to lift a teammate up after a brutal tackle, and the loudest voice celebrating our collective victories in the clubhouse.</p>
+                
+                <p>When Kyle passed, the loss left an undeniable void in our defensive lines and our community circles. However, the grit he demonstrated throughout his career left an enduring blueprint. We don't retire the number 14; we elevate it to act as a standard of work ethic, brotherhood, and passion that every junior and senior player aims to match.</p>
+            </div>
+
+            <!-- RIGHT COLUMN: QUICK BIO METRICS -->
+            <aside class="bio-sidebar">
+                <h3>Player Profile</h3>
+                
+                <div class="stat-item">
+                    <label>Full Name</label>
+                    <span>Kyle Clayton Barnes</span>
+                </div>
+                <div class="stat-item">
+                    <label>Preferred Position</label>
+                    <span>Wing / Outside Back</span>
+                </div>
+                <div class="stat-item">
+                    <label>Squad Legacy Number</label>
+                    <span>14</span>
+                </div>
+                <div class="stat-item">
+                    <label>Core Attributes</label>
+                    <span>Pace, Absolute Grit, Unwavering Loyalty</span>
+                </div>
+            </aside>
+        </div>
+
+        <!-- PILLARS OF LEGACY -->
+        <section class="values-section">
+            <h2>The Pillars of the KCB Legacy Fund</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <h3>1. Family Security</h3>
+                    <p>Ensuring the family Kyle left behind is actively supported, anchored, and cared for through systematic community allocations.</p>
+                </div>
+                <div class="value-card">
+                    <h3>2. Club Development</h3>
+                    <p>Providing pathways and structural resources for young, passionate players who mirror Kyle’s pure love and tenacity for the game.</p>
+                </div>
+                <div class="value-card">
+                    <h3>3. Keeping Fire Alive</h3>
+                    <p>Transforming our heartbreak into an annual celebration of absolute sporting passion, ensuring no one forgets how he played the game.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ACTION STRIP -->
+    <section class="cta-strip">
+        <h3>Help Us Protect The Legacy</h3>
+        <p style="margin-bottom: 25px; color: var(--text-muted);">All event proceeds, raffle ticket sales, and merchandise items directly fund the Kyle Barnes Memorial initiative.</p>
+        <div style="display: flex; gap: 15px; justify-content: center;">
+            <a href="index.html#prizes" class="btn btn-primary">Enter the Raffle</a>
+            <a href="index.html#sponsorship" class="btn btn-secondary">Corporate Support</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">
+            <img src="images/Gemini_Generated_Image_hfo459hfo459hfo4-removebg-preview.png" alt="KCB14 Logo Centered">
+        </div>
+        <p class="footer-tagline">Built on Legacy, Driven by Passion</p>
+        <p class="footer-sub">The KCB Memorial Day</p>
+    </footer>
+
+</body>
+</html>
