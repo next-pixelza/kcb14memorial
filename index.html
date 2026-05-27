@@ -1,108 +1,17 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kyle Clayton Barnes Memorial | KCB14</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,700;0,900;1,900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
- /* --- MOBILE RESPONSIVE --- */
-@media (max-width: 768px) {
 
-    header {
-        flex-direction: column;
-        padding: 15px 5%;
-        gap: 15px;
-    }
-
-    .logo img {
-        height: 50px;
-    }
-
-    nav {
-        width: 100%;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 12px;
-        align-items: center;
-        text-align: center;
-    }
-
-    nav a {
-        font-size: 0.8rem;
-    }
-
-    .hero {
-        height: auto;
-        min-height: 85vh;
-    }
-
-    .hero-content {
-        padding: 100px 20px 60px;
-    }
-
-    .hero-content h1 {
-        font-size: 2.5rem;
-        line-height: 1.1;
-    }
-
-    .hero-content p {
-        font-size: 1rem;
-    }
-
-    .btn-group {
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
-    }
-
-    .btn {
-        width: 100%;
-        max-width: 320px;
-    }
-
-    .bio-section {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        text-align: center;
-    }
-
-    .bio-title h2 {
-        font-size: 2.2rem;
-    }
-
-    .bio-title .accent-word {
-        font-size: 2.8rem;
-    }
-
-    .tracker-metrics {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .timeline-container {
-        padding-left: 20px;
-    }
-
-    .timeline-item::before {
-        left: -29px;
-    }
-
-    .prizes-section h2,
-    .sponsor-section h2 {
-        font-size: 2.2rem;
-    }
-
-    .merch-image {
-        height: 220px;
-    }
-
-}   
-
-    
     <style>
+
         /* --- DESIGN SYSTEM & TOKENS --- */
         :root {
             --primary-red: #cc0000;
@@ -266,7 +175,7 @@
             width: 100%;
         }
 
-        /* --- IMMERSIVE BACKGROUND SLIDER --- */
+        /* --- HERO --- */
         .hero {
             position: relative;
             height: 85vh;
@@ -341,7 +250,7 @@
             font-weight: 300;
         }
 
-        /* --- LIVE DONATION TRACKER BLOCK --- */
+        /* --- DONATION TRACKER --- */
         .tracker-section {
             background-color: var(--pure-black);
             padding: 60px 4%;
@@ -373,8 +282,16 @@
             font-size: 1.2rem;
         }
 
-        .metric-raised { color: var(--primary-red); font-size: 2rem; font-weight: 900; }
-        .metric-goal { color: var(--text-muted); padding-top: 10px; }
+        .metric-raised {
+            color: var(--primary-red);
+            font-size: 2rem;
+            font-weight: 900;
+        }
+
+        .metric-goal {
+            color: var(--text-muted);
+            padding-top: 10px;
+        }
 
         .progress-bar-bg {
             background-color: #222;
@@ -389,12 +306,12 @@
         .progress-bar-fill {
             background: linear-gradient(90deg, var(--dark-red), var(--primary-red));
             height: 100%;
-            width: 0%; 
+            width: 0%;
             border-radius: 12px;
             transition: width 1.5s cubic-bezier(0.1, 1, 0.1, 1);
         }
 
-        /* --- BIOGRAPHY / PURPOSE SECTION --- */
+        /* --- BIO SECTION --- */
         .bio-section {
             padding: 100px 4%;
             max-width: 1200px;
@@ -419,14 +336,13 @@
 
         .bio-text {
             font-size: 1.1rem;
-            color: var(--pure-white);
         }
 
         .bio-text p {
             margin-bottom: 20px;
         }
 
-        /* --- QUICK RULES LOGISTICS BANNER --- */
+        /* --- LOGISTICS --- */
         .logistics-bar {
             background-color: var(--pure-black);
             border-top: 2px solid var(--primary-red);
@@ -458,7 +374,7 @@
             font-weight: 700;
         }
 
-        /* --- LOGISTICS / TIMELINE SECTION --- */
+        /* --- SCHEDULE --- */
         .schedule-section {
             background-color: var(--pure-white);
             color: var(--pure-black);
@@ -510,7 +426,7 @@
             margin: 5px 0 10px 0;
         }
 
-        /* --- SQUAD HOLDER STYLES --- */
+        /* --- LINEUP --- */
         .lineup-section {
             background-color: #f9f9f9;
             padding: 100px 4%;
@@ -536,7 +452,7 @@
             margin-bottom: 15px;
         }
 
-        /* --- SPONSORSHIP SECTION --- */
+        /* --- SPONSOR --- */
         .sponsor-section {
             background-color: var(--pure-black);
             padding: 100px 4%;
@@ -595,7 +511,7 @@
             font-weight: 900;
         }
 
-        /* --- PRIZES SECTION --- */
+        /* --- PRIZES --- */
         .prizes-section {
             background-color: var(--pure-black);
             padding: 100px 4%;
@@ -603,7 +519,10 @@
             border-top: 4px solid var(--primary-red);
         }
 
-        .prizes-section h2 { font-size: 3.5rem; margin-bottom: 15px; }
+        .prizes-section h2 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
 
         .prizes-subtitle {
             font-size: 1.2rem;
@@ -636,28 +555,22 @@
             justify-content: space-between;
         }
 
-        .prize-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background-color: var(--primary-red);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: var(--transition-smooth);
-        }
-
         .prize-card:hover {
             transform: translateY(-10px);
             border-color: var(--primary-red);
             box-shadow: 0 15px 30px rgba(204, 0, 0, 0.15);
         }
 
-        .prize-card:hover::before { transform: scaleX(1); }
-        .prize-icon { font-size: 2.5rem; margin-bottom: 20px; display: inline-block; }
-        .prize-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .prize-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .prize-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
 
         .prize-value {
             display: block;
@@ -666,61 +579,65 @@
             font-size: 1.1rem;
             margin-bottom: 15px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        .prize-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; flex-grow: 1; }
-        .ticket-tier { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; color: var(--pure-white); display: block; text-align: center; margin-bottom: 8px; font-weight: 700; }
-
-        /* --- MERCHANDISE SECTION --- */
-       .merch-preview {
-    background-color: var(--pure-black);
-    padding: 100px 4%;
-    border-top: 4px solid var(--pure-white);
-    text-align: center;
-}
-
-.merch-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    max-width: 1100px;
-    margin: 0 auto;
-    align-items: stretch;
-}
-
-.merch-card {
-    background-color: var(--card-black);
-    padding: 25px;
-    border-radius: 6px;
-    text-align: center;
-    border: 1px solid #1a1a1a;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    overflow: hidden;
-}
-
-.merch-image {
-    width: 100%;
-    height: 250px;
-
-    object-fit: contain;
-
-    background-color: #111;
-    border-radius: 6px;
-
-    padding: 10px;
-    margin-bottom: 20px;
-
-    display: block;
+        .ticket-tier {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            text-align: center;
+            margin-bottom: 8px;
+            font-weight: 700;
         }
 
-        .merch-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
-        .merch-card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px; flex-grow: 1; }
-        .price { display: block; font-size: 1.3rem; font-weight: 900; color: var(--primary-red); margin-bottom: 5px; }
+        /* --- MERCH --- */
+        .merch-preview {
+            background-color: var(--pure-black);
+            padding: 100px 4%;
+            border-top: 4px solid var(--pure-white);
+            text-align: center;
+        }
+
+        .merch-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: stretch;
+        }
+
+        .merch-card {
+            background-color: var(--card-black);
+            padding: 25px;
+            border-radius: 6px;
+            text-align: center;
+            border: 1px solid #1a1a1a;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .merch-image {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            background-color: #111;
+            border-radius: 6px;
+            padding: 10px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .price {
+            display: block;
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--primary-red);
+            margin-bottom: 5px;
+        }
 
         /* --- FOOTER --- */
         footer {
@@ -730,343 +647,314 @@
             border-top: 1px solid #1a1a1a;
         }
 
-        .footer-logo { margin-bottom: 25px; }
-        .footer-logo img { height: 80px; margin: 0 auto; object-fit: contain; }
-        .footer-tagline { font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 1.1rem; margin-bottom: 10px; }
-        .footer-sub { color: var(--text-muted); font-size: 0.85rem; letter-spacing: 1px; }
+        .footer-logo img {
+            height: 80px;
+            margin: 0 auto;
+            object-fit: contain;
+        }
 
-        /* --- RESPONSIVE FIXES --- */
+        .footer-tagline {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-sub {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
         @media (max-width: 768px) {
+
+            header {
+                flex-direction: column;
+                padding: 15px 5%;
+                gap: 15px;
+            }
+
+            .logo img {
+                height: 50px;
+            }
+
+            nav {
+                width: 100%;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 12px;
+                align-items: center;
+                text-align: center;
+            }
+
+            nav a {
+                font-size: 0.8rem;
+            }
+
+            .hero {
+                height: auto;
+                min-height: 85vh;
+            }
+
+            .hero-content {
+                padding: 100px 20px 60px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+                line-height: 1.1;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .bio-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .bio-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .bio-title .accent-word {
+                font-size: 2.8rem;
+            }
+
+            .tracker-metrics {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .timeline-container {
+                padding-left: 20px;
+            }
+
+            .timeline-item::before {
+                left: -29px;
+            }
+
+            .prizes-section h2,
+            .sponsor-section h2 {
+                font-size: 2.2rem;
+            }
+
+            .merch-image {
+                height: 220px;
+            }
+        }
 
     </style>
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">
-            <img src="images/Gemini_Generated_Image_hfo459hfo459hfo4-removebg-preview.png" alt="KCB14 Logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="history.html">KCB14 History</a></li>
-                <li><a href="event.html">Memorial Event</a></li>
-                <li><a href="lineup.html">Squad Sheet</a></li>
-                <li><a href="sponsorship.html">Sponsorship</a></li>
-                <li><a href="prizes.html">Raffles & Prizes</a></li>
-                <li><a href="kcbmemory.html">Voice Your KCB memory</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+    <div class="logo">
+        <img src="images/Gemini_Generated_Image_hfo459hfo459hfo4-removebg-preview.png" alt="KCB14 Logo">
+    </div>
 
-    <section class="hero">
-        <div class="slider-container" id="hero-slider"></div>
-        
-        <div class="hero-content">
-            <h1>Kyle Clayton Barnes</h1>
-            <p class="profound-quote">"True impact isn't measured in time, but in the legacy that continues to move those left behind."</p>
-            
-            <div class="btn-group">
-                <a href="prizes.html" class="btn btn-primary">Buy Raffle Tickets</a>
-                <a href="#items" class="btn btn-secondary">Buy Limited Edition Items</a>
-                <a href="sponsorship.html" class="btn btn-primary">Corporate Sponsor</a>
-            </div>
-        </div>
-    </section>
+    <nav>
+        <ul>
+            <li><a href="history.html">KCB14 History</a></li>
+            <li><a href="event.html">Memorial Event</a></li>
+            <li><a href="lineup.html">Squad Sheet</a></li>
+            <li><a href="sponsorship.html">Sponsorship</a></li>
+            <li><a href="prizes.html">Raffles & Prizes</a></li>
+            <li><a href="kcbmemory.html">Voice Your KCB Memory</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <section class="tracker-section" id="donate">
-        <div class="tracker-container">
-            <h2 class="tracker-title">Legacy Fund Tracker</h2>
-            <div class="tracker-metrics">
-                <div>
-                    <span style="font-size: 0.85rem; display:block; text-transform: uppercase; color: var(--text-muted);">Total Raised Overall</span>
-                    <span class="metric-raised" id="raised-text">R 0</span>
-                </div>
-                <div class="metric-goal">
-                    Goal: <span id="goal-text">R 150,000</span>
-                </div>
-            </div>
-            <div class="progress-bar-bg">
-                <div class="progress-bar-fill" id="progress-fill"></div>
-            </div>
-            <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">Track updates systematically as Yoco deposits settle.</p>
-        </div>
-    </section>
+<section class="hero">
 
-    <div class="logistics-bar">
-        <div class="logistics-grid">
-            <div class="log-item">
-                <strong>R20 / Person</strong>
-                <span>Gate Entry Fee</span>
-            </div>
-            <div class="log-item">
-                <strong>R20 / Vehicle</strong>
-                <span>Parking Fee</span>
-            </div>
-            <div class="log-item">
-                <strong>Strictly No Own</strong>
-                <span>Food or Drinks Allowed</span>
-            </div>
-            <div class="log-item">
-                <strong>Cash Bar & Food</strong>
-                <span>Available On Site</span>
-            </div>
+    <div class="slider-container" id="hero-slider"></div>
+
+    <div class="hero-content">
+        <h1>Kyle Clayton Barnes</h1>
+
+        <p class="profound-quote">
+            "True impact isn't measured in time, but in the legacy that continues to move those left behind."
+        </p>
+
+        <div class="btn-group">
+            <a href="prizes.html" class="btn btn-primary">Buy Raffle Tickets</a>
+            <a href="#items" class="btn btn-secondary">Buy Limited Edition Items</a>
+            <a href="sponsorship.html" class="btn btn-primary">Corporate Sponsor</a>
         </div>
     </div>
 
-    <section class="bio-section" id="history">
-        <div class="bio-title">
-            <h2>The Man. The Myth. <span class="accent-word">The Legacy.</span></h2>
-        </div>
-        <div class="bio-text">
-            <p>Kyle Clayton Barnes wasn’t just a teammate or a name on a team sheet—he was the heartbeat of our community, a force of nature on the field, and an anchor off it. His grit, unmistakable character, and unwavering passion inspired everyone who had the privilege of running alongside him.</p>
-            <p>We host this memorial day not merely to look back in sorrow, but to actively carry forward the fire he brought to every minute of the game. Every ticket bought, every partnership forged, and every donation made directly protects and supports the family and legacy he left behind.</p>
-        </div>
-    </section>
-
-    <section class="schedule-section" id="event">
-        <h2>The Memorial Event Schedule</h2>
-        <p class="section-subtitle">Final Home Game Clash Against CPUT</p>
-        
-        <div class="timeline-container">
-            <div class="timeline-item">
-                <div class="time-tag">11:00 AM</div>
-                <h3>Gates Official Open</h3>
-                <p>Gates open to the community. Secure your spot, explore the limited-edition apparel stands, and view raffle prizes early.</p>
-            </div>
-            <div class="timeline-item">
-                <div class="time-tag">Throughout the Day</div>
-                <h3>4 Rugby Fixtures & Kids Entertainment</h3>
-                <p>Four highly anticipated match fixtures take place back-to-back, ending in our final home stand against CPUT. Full kids entertainment zone open all day.</p>
-            </div>
-            <div class="timeline-item">
-                <div class="time-tag">Every 8th Minute</div>
-                <h3>The 8th-Minute Tributes <span style="font-size:0.75rem; color:#888; font-weight:normal;">(Match Times Pending Confirmation)</span></h3>
-                <p>Across all 4 matches played, the referee will halt play during the 8th minute for a solemn, powerful minute of silence to honor Kyle's memory.</p>
-            </div>
-            <div class="timeline-item">
-                <div class="time-tag">Post-Match Event</div>
-                <h3>Aftermatch Function & Prize Handover</h3>
-                <p>Join us inside the main hall directly after the final whistle for the official legacy fund handover and the grand prize raffle draws.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="lineup-section" id="lineup">
-        <h2>Match Day Squad Sheets</h2>
-        <p class="section-subtitle" style="color: var(--primary-red); margin-bottom: 40px;">Commemorative Selection Lists</p>
-        <div class="placeholder-squad-box">
-            <h3>Squad Selection In Progress</h3>
-            <p style="color: var(--text-muted); font-size: 0.95rem; max-width: 500px; margin: 0 auto;">Official team sheets for the 4 commemorative fixtures are being finalized. Check back soon to see the full line-ups tracking out on game day.</p>
-        </div>
-    </section>
-
-    <section class="sponsor-section" id="sponsorship">
-        <h2 style="font-size: 3rem;">8th-Minute Tribute Sponsorship</h2>
-        <p class="prizes-subtitle" style="color: var(--text-muted); margin-bottom: 20px;">Corporate Partnership Framework</p>
-        <p style="max-width: 800px; margin: 0 auto 50px auto; color: var(--text-muted);">We are inviting four select corporate partners to purchase and dedicate one of the day's four scheduled minutes of silence. Secure massive branding exposure while fundamentally anchoring Kyle's family legacy fund.</p>
-        
-        <div class="sponsor-grid">
-            <div class="sponsor-card">
-                <h3>Minute of Silence Sponsor</h3>
-                <span class="sponsor-price">R 3,000 <span style="font-size:0.9rem; color:#888; font-weight:normal;">/ Match</span></span>
-                <p style="color: var(--text-muted); font-size:0.9rem;">Own a definitive, high-impact moment of honor during one of the day's four live rugby fixtures.</p>
-                <ul>
-                    <li>Official PA announcement: "This Minute of Silence is proudly brought to you by [Your Company Name]"</li>
-                    <li>Full high-exposure logo placement in the Day's Official Digital Programme</li>
-                    <li>Prominent digital placement on the Main KCB Memorial Site</li>
-                    <li>Dedicated sponsor recognition on the Official Club Website</li>
-                    <li>Full on-site event day visual exposure and visibility</li>
-                </ul>
-                <!-- Changed to button with data items. 3000 ZAR = 300000 Cents -->
-                <a href="https://kcbmemorial.wasmer.app/checkout/?add-to-cart=55" class="btn btn-dark">
-    Buy Minute of Silence
-</a>
-                </div>
-        </div>
-    </section>
-
-    <section class="prizes-section" id="prizes">
-        <h2>Grand Raffle & Prizes</h2>
-        <p class="prizes-subtitle">Incredible items up for grabs — entries directly support the legacy fund</p>
-        
-        <div class="prizes-grid">
-            <div class="prize-card">
-                <div>
-                    <span class="prize-icon">🏆</span>
-                    <h3>Main Prize: Weekend Away for 2</h3>
-                    <span class="prize-value">Valued at R18,000</span>
-                    <p>An incredible getaway luxury experience built for two. Stand a chance to reset, relax, and back a historic cause.</p>
-                </div>
-                <div>
-                    <span class="ticket-tier">R150 Per Ticket</span>
-                    <a href="https://kcbmemorial.wasmer.app/product/weekend-away-for-two/" class="btn btn-dark">
-    Get Tickets
-</a>
-                </div>
-            </div>
-
-            <div class="prize-card">
-                <div>
-                    <span class="prize-icon">🔥</span>
-                    <h3>Prize 2: Luxury Yacht Trip for 2</h3>
-                    <span class="prize-value">Valued at R9,000</span>
-                    <p>Take to the open waters and experience an exclusive ocean excursion built to deliver unforgettable views.</p>
-                </div>
-                <div>
-                    <span class="ticket-tier">R50 Per Ticket</span>
-                    <a href="https://kcbmemorial.wasmer.app/product/yacht-trip-for-two/" class="btn btn-dark">
-    Get Tickets
-</a>
-                </div>
-            </div>
-
-            <div class="prize-card">
-                <div>
-                    <span class="prize-icon">⚡</span>
-                    <h3>Prize 3: Premium Alcohol Hamper</h3>
-                    <span class="prize-value">Valued at R6,000</span>
-                    <p>A carefully selected, high-end collection of premium spirits and elite pairings perfect for any celebration layout.</p>
-                </div>
-                <div>
-                    <span class="ticket-tier">R50 Per Ticket</span>
-                    <a href="https://kcbmemorial.wasmer.app/product/alcohol-raffle/" class="btn btn-dark">
-    Get Tickets
-</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-  <section class="merch-preview" id="items">
-    <h2 style="color: var(--pure-white);">
-        Official KCB14 Merchandise
-    </h2>
-
-    <p class="prizes-subtitle" style="color: var(--text-muted); margin-bottom: 60px;">
-        Exclusive releases available only for this memorial event
-    </p>
-
-    <div class="merch-grid">
-
-        <!-- Jersey -->
-        <div class="merch-card">
-            <div>
-                <img src="images/kcbjersey.png" alt="KCB14 Jersey" class="merch-image">
-
-                <h3>The KCB14 Commemorative Jersey</h3>
-
-                <p>
-                    Premium high-performance fit featuring custom detailing
-                    designed exclusively for the KCB14 Memorial.
-                </p>
-            </div>
-
-            <div>
-                <span class="price">R 350</span>
-
-                <a href="https://kcbmemorial.wasmer.app/product/kcb-jersey/" class="btn btn-dark">
-                    Buy Jersey
-                </a>
-            </div>
-        </div>
-
-        <!-- Cap -->
-        <div class="merch-card">
-            <div>
-                <img src="images/kcbcap.png" alt="KCB14 Cap" class="merch-image">
-
-                <h3>Legacy Snapback Cap</h3>
-
-                <p>
-                    Classic structured fit with precision embroidery celebrating
-                    Kyle’s legacy and spirit.
-                </p>
-            </div>
-
-            <div>
-                <span class="price">R 200</span>
-
-                <a href="https://kcbmemorial.wasmer.app/product/kcb-cap/" class="btn btn-dark">
-                    Buy Cap
-                </a>
-            </div>
-        </div>
-
-        <!-- Keyring -->
-        <div class="merch-card">
-            <div>
-                <img src="images/kcbkeyring.png" alt="KCB14 Keyring" class="merch-image">
-
-                <h3>KCB14 Memorial Keyring</h3>
-
-                <p>
-                    Durable commemorative keyring designed to carry the KCB14
-                    legacy wherever you go.
-                </p>
-            </div>
-
-            <div>
-                <span class="price">R 100</span>
-
-                <a href="https://kcbmemorial.wasmer.app/product/kcb-keyring/" class="btn btn-dark">
-                    Buy Keyring
-                </a>
-            </div>
-        </div>
-
-    </div>
 </section>
 
-    <footer>
-        <div class="footer-logo">
-            <img src="images/Gemini_Generated_Image_hfo459hfo459hfo4-removebg-preview.png" alt="KCB14 Logo Centered">
+<section class="tracker-section" id="donate">
+
+    <div class="tracker-container">
+
+        <h2 class="tracker-title">Legacy Fund Tracker</h2>
+
+        <div class="tracker-metrics">
+
+            <div>
+                <span style="font-size: 0.85rem; display:block; text-transform: uppercase; color: var(--text-muted);">
+                    Total Raised Overall
+                </span>
+
+                <span class="metric-raised" id="raised-text">R 0</span>
+            </div>
+
+            <div class="metric-goal">
+                Goal: <span id="goal-text">R 150,000</span>
+            </div>
+
         </div>
-        <p class="footer-tagline">Built on Legacy, Driven by Passion</p>
-        <p class="footer-sub">The KCB Memorial Day</p>
-    </footer>
 
-    <script>
-        // --- CONFIG DATA FOR MEMORIAL ---
-        const amountRaised = 0;  
-        const targetGoal = 150000;
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
 
-        // --- AUTOPLAY BACKGROUND SLIDER ENGINE ---
-        const sliderImages = [
-            "images/kcb1.jpg",
-            "images/kcb2.jpg",
-            "images/kcb3.jpg",
-            "images/kcb4.jpg",
-            "images/kcb5.jpg"
-        ];
+        <p style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">
+            Track updates systematically as Yoco deposits settle.
+        </p>
 
-       const sliderContainer = document.getElementById('hero-slider');
-    
-    // Create elements dynamically
+    </div>
+
+</section>
+
+<div class="logistics-bar">
+
+    <div class="logistics-grid">
+
+        <div class="log-item">
+            <strong>R20 / Person</strong>
+            <span>Gate Entry Fee</span>
+        </div>
+
+        <div class="log-item">
+            <strong>R20 / Vehicle</strong>
+            <span>Parking Fee</span>
+        </div>
+
+        <div class="log-item">
+            <strong>Strictly No Own</strong>
+            <span>Food or Drinks Allowed</span>
+        </div>
+
+        <div class="log-item">
+            <strong>Cash Bar & Food</strong>
+            <span>Available On Site</span>
+        </div>
+
+    </div>
+
+</div>
+
+<section class="bio-section" id="history">
+
+    <div class="bio-title">
+        <h2>
+            The Man. The Myth.
+            <span class="accent-word">The Legacy.</span>
+        </h2>
+    </div>
+
+    <div class="bio-text">
+
+        <p>
+            Kyle Clayton Barnes wasn’t just a teammate or a name on a team sheet—he was the heartbeat of our community,
+            a force of nature on the field, and an anchor off it.
+        </p>
+
+        <p>
+            We host this memorial day not merely to look back in sorrow,
+            but to actively carry forward the fire he brought to every minute of the game.
+        </p>
+
+    </div>
+
+</section>
+
+<footer>
+
+    <div class="footer-logo">
+        <img src="images/Gemini_Generated_Image_hfo459hfo459hfo4-removebg-preview.png" alt="KCB14 Logo Centered">
+    </div>
+
+    <p class="footer-tagline">Built on Legacy, Driven by Passion</p>
+
+    <p class="footer-sub">The KCB Memorial Day</p>
+
+</footer>
+
+<script>
+
+    // --- DONATION TRACKER ---
+    const amountRaised = 0;
+    const targetGoal = 150000;
+
+    const progressFill = document.getElementById('progress-fill');
+
+    const percentage = (amountRaised / targetGoal) * 100;
+
+    progressFill.style.width = `${percentage}%`;
+
+    // --- HERO SLIDER ---
+    const sliderImages = [
+        "images/kcb1.jpg",
+        "images/kcb2.jpg",
+        "images/kcb3.jpg",
+        "images/kcb4.jpg",
+        "images/kcb5.jpg"
+    ];
+
+    const sliderContainer = document.getElementById('hero-slider');
+
     sliderImages.forEach((src, index) => {
-    const slide = document.createElement('div');
-    slide.className = `slide ${index === 0 ? 'active' : ''}`;
-    slide.style.backgroundImage = `url('${src}')`;
 
-    slide.style.backgroundSize = 'cover';
-slide.style.backgroundPosition = 'top center';
-    slide.style.backgroundRepeat = 'no-repeat';
+        const slide = document.createElement('div');
 
-    sliderContainer.appendChild(slide);
-});
+        slide.className = `slide ${index === 0 ? 'active' : ''}`;
 
-    // Slider logic
+        slide.style.backgroundImage = `url('${src}')`;
+        slide.style.backgroundSize = 'cover';
+        slide.style.backgroundPosition = 'top center';
+        slide.style.backgroundRepeat = 'no-repeat';
+
+        sliderContainer.appendChild(slide);
+
+    });
+
     let currentSlide = 0;
+
     setInterval(() => {
+
         const slides = document.querySelectorAll('.slide');
+
         slides[currentSlide].classList.remove('active');
+
         currentSlide = (currentSlide + 1) % slides.length;
+
         slides[currentSlide].classList.add('active');
+
     }, 5000);
 
-        // --- PROGRESS BAR INITIALIZATION ---
-        const progressFill = document.getElementById('progress-fill');
-        const percentage = (amountRaised / targetGoal) * 100;
-        progressFill.style.width = `${percentage}%`;
 </script>
+
 </body>
 </html>
