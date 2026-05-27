@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyle Clayton Barnes Memorial | KCB14</title>
+    <!-- Google Fonts for striking, high-impact typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,700;0,900;1,900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- DESIGN SYSTEM & TOKENS --- */
+        :root {
+            --primary-red: #cc0000;
+            --dark-red: #8b0000;
+            --pure-black: #0a0a0a;
+            --card-black: #141414;
+            --pure-white: #ffffff;
+            --text-muted: #cccccc;
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-red);
+            color: var(--pure-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- TYPOGRAPHY UTILITIES --- */
+        h1, h2, h3 {
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            font-weight: 900;
+        }
+
+        .profound-quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        /* --- BUTTONS --- */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+            border-radius: 4px;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--pure-white);
+            color: var(--pure-black);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--pure-black);
+            color: var(--pure-white);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border-color: var(--pure-white);
+            color: var(--pure-white);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--pure-white);
+            color: var(--pure-black);
+            transform: translateY(-3px);
+        }
+
+        .btn-dark {
+            background-color: var(--pure-black);
+            color: var(--pure-white);
+            border: 2px solid var(--primary-red);
+        }
+
+        .btn-dark:hover {
+            background-color: var(--primary-red);
+            border-color: var(--pure-white);
+            transform: translateY(-3px);
+        }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--pure-black);
+            padding: 20px 4%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid rgba(204, 0, 0, 0.3);
+        }
+
+        .logo img {
+            height: 50px; /* Adjust based on your logo design */
+            display: block;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--pure-white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition-smooth);
+            position: relative;
+            padding: 5px 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-red);
+            transition: var(--transition-smooth);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* --- HERO SLIDER SECTION --- */
+        .hero {
+            position: relative;
+            height: 85vh;
+            width: 100%;
+            background-color: var(--pure-black);
+            overflow: hidden;
+        }
+
+        /* Temporary structural background placeholder until you drop your URLs in */
+        .slider-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.85));
+            z-index: 1;
+        }
+
+        /* Individual slide structure setup for your URLs */
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            animation: slideFade 16s infinite;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Example setup for 3 images. Once you have URLs, put them inside url('') below */
+        .slide:nth-child(1) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.85)), url('YOUR_IMAGE_URL_1'); animation-delay: 0s; opacity: 1; }
+        .slide:nth-child(2) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.85)), url('YOUR_IMAGE_URL_2'); animation-delay: 5s; }
+        .slide:nth-child(3) { background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.85)), url('YOUR_IMAGE_URL_3'); animation-delay: 10s; }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            padding: 0 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            line-height: 1;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        }
+
+        .hero-content p {
+            font-size: 1.6rem;
+            max-width: 750px;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        /* --- BIOGRAPHY / INTRO SECTION --- */
+        .bio-section {
+            padding: 100px 4%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .bio-title h2 {
+            font-size: 3rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .bio-title .accent-word {
+            display: block;
+            color: var(--pure-black);
+            font-size: 4rem;
+        }
+
+        .bio-text {
+            font-size: 1.1rem;
+            color: var(--pure-white);
+        }
+
+        .bio-text p {
+            margin-bottom: 20px;
+        }
+
+        /* --- PRIZES SECTION (ANIMATED CARDS) --- */
+        .prizes-section {
+            background-color: var(--pure-black);
+            padding: 100px 4%;
+            text-align: center;
+            border-top: 4px solid var(--pure-white);
+        }
+
+        .prizes-section h2 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .prizes-subtitle {
+            font-size: 1.2rem;
+            color: var(--primary-red);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 60px;
+        }
+
+        .prizes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .prize-card {
+            background-color: var(--card-black);
+            border: 1px solid #222;
+            padding: 40px 30px;
+            border-radius: 6px;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Sophisticated overlay tracking line effect on hover */
+        .prize-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--primary-red);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: var(--transition-smooth);
+        }
+
+        .prize-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-red);
+            box-shadow: 0 15px 30px rgba(204, 0, 0, 0.15);
+        }
+
+        .prize-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .prize-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .prize-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .prize-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--pure-black);
+            padding: 60px 4% 40px 4%;
+            text-align: center;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        .footer-logo {
+            margin-bottom: 25px;
+        }
+
+        .footer-logo img {
+            height: 60px;
+            margin: 0 auto;
+        }
+
+        .footer-tagline {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .footer-sub {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* --- CSS ANIMATIONS --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Quick-and-clean CSS background slider animation wrapper */
+        @keyframes slideFade {
+            0% { opacity: 0; }
+            5% { opacity: 1; }
+            30% { opacity: 1; }
+            35% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* --- RESPONSIVE FIXES --- */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            .bio-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            .bio-title h2 {
+                font-size: 2.2rem;
+            }
+            .bio-title .accent-word {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <!-- Replace with path to your logo asset once uploaded to /images -->
+            <img src="images/logo-left.png" alt="KCB14 Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#history">KCB14 History</a></li>
+                <li><a href="#event">Memorial Event</a></li>
+                <li><a href="#prizes">Raffles & Prizes</a></li>
+                <li><a href="#items">Limited Edition Items</a></li>
+                <li><a href="#partner">Partner with Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION WITH SLIDER WRAPPER -->
+    <section class="hero">
+        <div class="slider-container">
+            <div class="slide"></div>
+            <div class="slide"></div>
+            <div class="slide"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1>Kyle Clayton Barnes</h1>
+            <p class="profound-quote">"True impact isn't measured in time, but in the legacy that continues to move those left behind."</p>
+            
+            <div class="btn-group">
+                <a href="#prizes" class="btn btn-primary">Buy Raffle Tickets</a>
+                <a href="#items" class="btn btn-secondary">Buy Limited Edition Items</a>
+                <a href="#donate" class="btn btn-primary">Donate to the Fund</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BIOGRAPHY / PURPOSE SECTION -->
+    <section class="bio-section" id="history">
+        <div class="bio-title">
+            <h2>The Man. The Myth. <span class="accent-word">The Legacy.</span></h2>
+        </div>
+        <div class="bio-text">
+            <p>Kyle Clayton Barnes wasn’t just a teammate or a name on a team sheet—he was the heartbeat of our community, a force of nature on the field, and an anchor off it. His grit, unmistakable character, and unwavering passion inspired everyone who had the privilege of running alongside him.</p>
+            <p>We host this memorial day not merely to look back in sorrow, but to actively carry forward the fire he brought to every minute of the game. Every ticket bought, every partnership forged, and every donation made directly protects and supports the family and legacy he left behind.</p>
+            
+            <div class="btn-group" style="justify-content: flex-start;">
+                <a href="#partner" class="btn btn-dark">Partner with Us</a>
+                <a href="#event" class="btn btn-secondary">View Memorial Event</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOP PRIZES SECTION -->
+    <section class="prizes-section" id="prizes">
+        <h2>Grand Raffle & Prizes</h2>
+        <p class="prizes-subtitle">Incredible items up for grabs — missing out isn't an option</p>
+        
+        <div class="prizes-grid">
+            <!-- Prize Card 1 -->
+            <div class="prize-card">
+                <span class="prize-icon">🏆</span>
+                <h3>Placeholder Prize One</h3>
+                <p>An unbelievable, custom premium reward waiting for your final specifications. Designed to drive ticket sales instantly.</p>
+            </div>
+
+            <!-- Prize Card 2 -->
+            <div class="prize-card">
+                <span class="prize-icon">🔥</span>
+                <h3>Placeholder Prize Two</h3>
+                <p>A second high-value item or exclusive experience that will compel your community to stand up and support the cause.</p>
+            </div>
+
+            <!-- Prize Card 3 -->
+            <div class="prize-card">
+                <span class="prize-icon">⚡</span>
+                <h3>Placeholder Prize Three</h3>
+                <p>The ultimate addition to our line-up. A jaw-dropping prize that turns interest into immediate donations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">
+            <!-- Replace with path to centered logo asset once uploaded to /images -->
+            <img src="images/logo-center.png" alt="KCB14 Centered Logo">
+        </div>
+        <p class="footer-tagline">Built on Legacy, Driven by Passion</p>
+        <p class="footer-sub">The KCB Memorial Day</p>
+    </footer>
+
+</body>
+</html>
