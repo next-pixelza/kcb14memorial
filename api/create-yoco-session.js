@@ -1,38 +1,34 @@
 export default async function handler(req, res) {
-    // Enable CORS so your frontend pages can talk to this backend function safely
-    res.setHeader('Access-Control-Allow-Credentials', true);
+
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'POST,OPTIONS');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-    // Handle browser pre-flight safety checks
     if (req.method === 'OPTIONS') {
-        res.status(200).end();
-        return;
+        return res.status(200).end();
     }
 
-    // Only allow secure POST requests from your forms
     if (req.method !== 'POST') {
         return res.status(405).json({ error: 'Method not allowed' });
     }
 
     try {
-        const { amountInCents, customerName, customerEmail, itemsOrdered } = req.body;
 
-        // Make the secure, hidden server-to-server call to Yoco's API
-        const response = await fetch('https://online.yoco.com/v1/charges/tokens', {
+        const { amount, productName } = req.body;
+
+        const response = await fetch('https://payments.yoco.com/api/checkouts', {
             method: 'POST',
             headers: {
-                'X-Auth-Secret-Key': process.env.YOCO_SECRET_KEY, // Pulls safely from your hidden Vercel settings
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${process.env.YOCO_SECRET_KEY}`
             },
             body: JSON.stringify({
-                amountInCents: amountInCents,
+                amount,
                 currency: 'ZAR',
+                successUrl: 'https://YOUR-VERCEL-URL.vercel.app/success.html',
+                cancelUrl: 'https://YOUR-VERCEL-URL.vercel.app/cancel.html',
                 metadata: {
-                    name: customerName,
-                    email: customerEmail,
-                    order: itemsOrdered
+                    productName
                 }
             })
         });
@@ -40,13 +36,20 @@ export default async function handler(req, res) {
         const data = await response.json();
 
         if (!response.ok) {
-            return res.status(400).json({ error: 'Yoco API Error', details: data });
+            return res.status(400).json({
+                error: 'Yoco error',
+                details: data
+            });
         }
 
-        // Return the temporary payment session token back to your frontend page
-        return res.status(200).json(data);
+        return res.status(200).json({
+            redirectUrl: data.redirectUrl
+        });
 
     } catch (error) {
-        return res.status(500).json({ error: 'Server Error', message: error.message });
+        return res.status(500).json({
+            error: 'Server error',
+            message: error.message
+        });
     }
 }
