@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kyle Clayton Barnes Memorial | KCB14</title>
-    <!-- Google Fonts for striking, high-impact typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,700;0,900;1,900&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
@@ -173,7 +172,7 @@
             width: 100%;
         }
 
-        /* --- AUTOPLAY BACKGROUND SLIDER --- */
+        /* --- IMMERSIVE BACKGROUND SLIDER (NON-CRUSHED) --- */
         .hero {
             position: relative;
             height: 85vh;
@@ -197,8 +196,10 @@
             height: 100%;
             top: 0;
             left: 0;
-            background-size: cover;
+            background-size: contain; /* Ensures complete slider visuals are fully viewable */
+            background-repeat: no-repeat;
             background-position: center;
+            background-color: #050505; /* Seamless letterboxing fill */
             opacity: 0;
             transition: opacity 1.2s ease-in-out;
         }
@@ -214,8 +215,9 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.85));
+            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.8));
             z-index: 2;
+            pointer-events: none;
         }
 
         .hero-content {
@@ -230,7 +232,6 @@
             padding: 0 20px;
             max-width: 1000px;
             margin: 0 auto;
-            animation: fadeInUp 1s ease-out;
         }
 
         .hero-content h1 {
@@ -652,7 +653,6 @@
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="logo">
             <img src="images/Gemini_Generated_Image_hfo459hfo459hfo4-removebg-preview.png" alt="KCB14 Logo">
@@ -669,7 +669,6 @@
         </nav>
     </header>
 
-    <!-- HERO SECTION WITH DYNAMIC AUTOMATION SLIDER -->
     <section class="hero">
         <div class="slider-container" id="hero-slider"></div>
         
@@ -679,13 +678,12 @@
             
             <div class="btn-group">
                 <a href="prizes.html" class="btn btn-primary">Buy Raffle Tickets</a>
-                <a href="prizes.html" class="btn btn-secondary">Buy Limited Edition Items</a>
-                <a href="sponsorship.html" class="btn btn-primary">Corporate Sponsor</a>
+                <a href="#items" class="btn btn-secondary">Buy Limited Edition Items</a>
+                <a href="#sponsorship" class="btn btn-primary">Corporate Sponsor</a>
             </div>
         </div>
     </section>
 
-    <!-- LIVE DONATION TRACKER PANEL -->
     <section class="tracker-section" id="donate">
         <div class="tracker-container">
             <h2 class="tracker-title">Legacy Fund Tracker</h2>
@@ -705,18 +703,15 @@
         </div>
     </section>
 
-    <!-- GROUND RULES LOGISTICS STRIP -->
     <div class="logistics-bar">
         <div class="logistics-grid">
             <div class="log-item">
                 <strong>R20 / Person</strong>
                 <span>Gate Entry Fee</span>
             </div>
-            <div class="logistics-grid">
-                <div class="log-item">
-                    <strong>R20 / Vehicle</strong>
-                    <span>Parking Fee</span>
-                </div>
+            <div class="log-item">
+                <strong>R20 / Vehicle</strong>
+                <span>Parking Fee</span>
             </div>
             <div class="log-item">
                 <strong>Strictly No Own</strong>
@@ -729,7 +724,6 @@
         </div>
     </div>
 
-    <!-- BIOGRAPHY / PURPOSE SECTION -->
     <section class="bio-section" id="history">
         <div class="bio-title">
             <h2>The Man. The Myth. <span class="accent-word">The Legacy.</span></h2>
@@ -740,7 +734,6 @@
         </div>
     </section>
 
-    <!-- LOGISTICS / TIMELINE SECTION -->
     <section class="schedule-section" id="event">
         <h2>The Memorial Event Schedule</h2>
         <p class="section-subtitle">Final Home Game Clash Against CPUT</p>
@@ -769,7 +762,6 @@
         </div>
     </section>
 
-    <!-- MATCH DAY LINEUP HOLDER -->
     <section class="lineup-section" id="lineup">
         <h2>Match Day Squad Sheets</h2>
         <p class="section-subtitle" style="color: var(--primary-red); margin-bottom: 40px;">Commemorative Selection Lists</p>
@@ -779,7 +771,6 @@
         </div>
     </section>
 
-    <!-- CORPORATE MINUTE OF SILENCE SPONSORSHIP SECTION -->
     <section class="sponsor-section" id="sponsorship">
         <h2 style="font-size: 3rem;">8th-Minute Tribute Sponsorship</h2>
         <p class="prizes-subtitle" style="color: var(--text-muted); margin-bottom: 20px;">Corporate Partnership Framework</p>
@@ -797,18 +788,16 @@
                     <li>Dedicated sponsor recognition on the Official Club Website</li>
                     <li>Full on-site event day visual exposure and visibility</li>
                 </ul>
-                <a href="mailto:info@empresscreations.co.za?subject=KCB14%20Minute%20of%20Silence%20Sponsorship" class="btn btn-dark">Secure a Minute</a>
+                <a href="https://pay.yoco.com/r/2BGjaB" target="_blank" class="btn btn-dark">Secure a Minute</a>
             </div>
         </div>
     </section>
 
-    <!-- TOP PRIZES SECTION -->
     <section class="prizes-section" id="prizes">
         <h2>Grand Raffle & Prizes</h2>
         <p class="prizes-subtitle">Incredible items up for grabs — entries directly support the legacy fund</p>
         
         <div class="prizes-grid">
-            <!-- Prize 1 -->
             <div class="prize-card">
                 <div>
                     <span class="prize-icon">🏆</span>
@@ -822,7 +811,6 @@
                 </div>
             </div>
 
-            <!-- Prize 2 -->
             <div class="prize-card">
                 <div>
                     <span class="prize-icon">🔥</span>
@@ -836,7 +824,6 @@
                 </div>
             </div>
 
-            <!-- Prize 3 -->
             <div class="prize-card">
                 <div>
                     <span class="prize-icon">⚡</span>
@@ -852,13 +839,11 @@
         </div>
     </section>
 
-    <!-- MERCHANDISE SECTION -->
     <section class="merch-preview" id="items">
-        <h2 style="color: var(--pure-white);">Voice Your KCB Memory</h2>
+        <h2 style="color: var(--pure-white);">Voice Your KCB Merchandise</h2>
         <p class="prizes-subtitle" style="color: var(--text-muted); margin-bottom: 60px;">Exclusive releases available only for this memorial frame</p>
         
         <div class="merch-grid">
-            <!-- Jersey -->
             <div class="merch-card">
                 <div>
                     <div class="merch-img-placeholder">[ Custom Jersey Asset ]</div>
@@ -867,10 +852,9 @@
                 </div>
                 <div>
                     <span class="price">R 350</span>
-                    <a href="#" class="btn btn-dark btn-merch">Purchase Jersey</a>
+                    <a href="https://pay.yoco.com/r/2wgAvn" target="_blank" class="btn btn-dark btn-merch">Purchase Jersey</a>
                 </div>
             </div>
-            <!-- Cap -->
             <div class="merch-card">
                 <div>
                     <div class="merch-img-placeholder">[ Heritage Cap Asset ]</div>
@@ -878,11 +862,10 @@
                     <p>Classic structured fit with precision embroidery celebrating the spirit of our anchor player.</p>
                 </div>
                 <div>
-                    <span class="price">R 250</span>
-                    <a href="#" class="btn btn-dark btn-merch">Purchase Cap</a>
+                    <span class="price">R 200</span>
+                    <a href="https://pay.yoco.com/r/70VLlx" target="_blank" class="btn btn-dark btn-merch">Purchase Cap</a>
                 </div>
             </div>
-            <!-- Keyring -->
             <div class="merch-card">
                 <div>
                     <div class="merch-img-placeholder">[ Custom Keyring Asset ]</div>
@@ -891,13 +874,12 @@
                 </div>
                 <div>
                     <span class="price">R 100</span>
-                    <a href="#" class="btn btn-dark btn-merch">Purchase Keyring</a>
+                    <a href="https://pay.yoco.com/r/4kGAZ1" target="_blank" class="btn btn-dark btn-merch">Purchase Keyring</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="footer-logo">
             <img src="images/Gemini_Generated_Image_hfo459hfo459hfo4-removebg-preview.png" alt="KCB14 Logo Centered">
@@ -906,59 +888,56 @@
         <p class="footer-sub">The KCB Memorial Day</p>
     </footer>
 
-    <!-- CONTROLLERS & ENGINE SCRIPTS -->
     <script>
-        // --- CONFIG DATA FOR REGISTRATION ---
-        const amountRaised = 42500;  
-        const targetGoal = 150000;   
+        // --- CONFIG DATA FOR MEMORIAL ---
+        const amountRaised = 0;  
+        const targetGoal = 15000;
 
-        // --- WHATSAPP CONTINUOUS AUTOPLAY IMAGE SLIDER ARRAY ---
+        // --- AUTOPLAY BACKGROUND SLIDER ENGINE ---
+        // Replace strings inside this array with your absolute image paths
         const sliderImages = [
-            'WhatsApp Image 2026-03-23 at 11.25.03 AM (1).jpg',
-            'WhatsApp Image 2026-03-23 at 11.25.03 AM (3).jpg',
-            'WhatsApp Image 2026-03-23 at 11.25.05 AM (3).jpg',
-            'WhatsApp Image 2026-03-23 at 11.25.02 AM (2).jpg',
-            'WhatsApp Image 2026-03-23 at 11.25.05 AM (1).jpg',
-            'WhatsApp Image 2026-03-23 at 11.25.04 AM (1).jpg'
+            "images/slider-1.jpg",
+            "images/slider-2.jpg",
+            "images/slider-3.jpg"
         ];
 
-        function initSlider() {
-            const container = document.getElementById('hero-slider');
-            
-            sliderImages.forEach((imgSrc, index) => {
-                const slide = document.createElement('div');
-                slide.className = `slide${index === 0 ? ' active' : ''}`;
-                slide.style.backgroundImage = `url('images/${imgSrc}')`;
-                container.appendChild(slide);
+        const sliderContainer = document.getElementById("hero-slider");
+
+        if (sliderImages.length > 0) {
+            sliderImages.forEach((imageSrc, index) => {
+                const slide = document.createElement("div");
+                slide.classList.add("slide");
+                if (index === 0) slide.classList.add("active");
+                slide.style.backgroundImage = `url('${imageSrc}')`;
+                sliderContainer.appendChild(slide);
             });
 
-            let currentSlide = 0;
-            const slides = document.querySelectorAll('.slide');
-            
+            let currentSlideIndex = 0;
+            const slides = document.querySelectorAll(".slide");
+
             setInterval(() => {
-                if(slides.length === 0) return;
-                slides[currentSlide].classList.remove('active');
-                currentSlide = (currentSlide + 1) % slides.length;
-                slides[currentSlide].classList.add('active');
-            }, 4500);
+                slides[currentSlideIndex].classList.remove("active");
+                currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+                slides[currentSlideIndex].classList.add("active");
+            }, 5000); // Transitions slide image every 5 seconds
         }
 
-        function initializeTracker() {
+        // --- TRACKER METRICS ENGINE ---
+        document.addEventListener("DOMContentLoaded", () => {
+            const raisedText = document.getElementById("raised-text");
+            const progressFill = document.getElementById("progress-fill");
+            
+            // Calculate progress percentage accurately
             const percentage = Math.min((amountRaised / targetGoal) * 100, 100);
             
-            document.getElementById('raised-text').innerText = 'R ' + amountRaised.toLocaleString('en-ZA');
-            document.getElementById('goal-text').innerText = 'R ' + targetGoal.toLocaleString('en-ZA');
+            // Render numeric metrics smoothly
+            raisedText.textContent = `R ${amountRaised.toLocaleString('en-ZA')}`;
             
+            // Trigger layout animation transition
             setTimeout(() => {
-                document.getElementById('progress-fill').style.width = percentage + '%';
-            }, 200);
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            initSlider();
-            initializeTracker();
+                progressFill.style.width = `${percentage}%`;
+            }, 300);
         });
     </script>
-
 </body>
 </html>
