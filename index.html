@@ -904,16 +904,17 @@
             "images/WhatsApp Image 2026-03-23 at 11.25.02 AM (2).jpg"
         ];
 
-        const sliderContainer = document.getElementById('hero-slider');
-        let currentSlide = 0;
+        ];
 
-        sliderImages.forEach((imgUrl, idx) => {
-            const slideDiv = document.createElement('div');
-            slideDiv.className = `slide ${idx === 0 ? 'active' : ''}`;
-            slideDiv.style.backgroundImage = `url('${imgUrl}')`;
-            sliderContainer.appendChild(slideDiv);
+        const sliderContainer = document.getElementById('hero-slider');
+        sliderImages.forEach((src, index) => {
+            const slide = document.createElement('div');
+            slide.className = `slide ${index === 0 ? 'active' : ''}`;
+            slide.style.backgroundImage = `url('${src}')`;
+            sliderContainer.appendChild(slide);
         });
 
+        let currentSlide = 0;
         setInterval(() => {
             const slides = document.querySelectorAll('.slide');
             slides[currentSlide].classList.remove('active');
@@ -921,77 +922,31 @@
             slides[currentSlide].classList.add('active');
         }, 5000);
 
-        // --- PROGRESS BAR PROGRESSION ---
-        const percentage = Math.min((amountRaised / targetGoal) * 100, 100);
-        document.getElementById('raised-text').innerText = `R ${amountRaised.toLocaleString()}`;
-        document.getElementById('progress-fill').style.width = `${percentage}%`;
+        // --- PROGRESS BAR INITIALIZATION ---
+        const progressFill = document.getElementById('progress-fill');
+        const percentage = (amountRaised / targetGoal) * 100;
+        progressFill.style.width = `${percentage}%`;
 
-
-        // ==========================================
-        // --- SYSTEMATIC YOCO OVERLAY AUTOMATION ---
-        // ==========================================
-
-        // Initialize SDK with your public live key safely
+        // --- YOCO SDK INTEGRATION ---
         const yoco = new window.YocoSDK({
-            publicKey: 'pk_live_YOUR_ACTUAL_YOCO_PUBLIC_KEY' // <-- Replace with your live public key
+            publicKey: 'pk_live_c22d9aa2kw60Rvjbb344' // Replace with your actual Yoco public key
         });
 
-        // Add a single click listener across all overlay checkout buttons systematically
         document.querySelectorAll('.yoco-checkout-btn').forEach(button => {
-            button.addEventListener('click', async function(e) {
-                e.preventDefault();
-
-                // Get product information directly out of the clicked button properties
-                const productAmountInCents = parseInt(this.getAttribute('data-amount'), 10);
-                const productName = this.getAttribute('data-name');
-                const initialButtonText = this.innerText;
-
-                // Provide clear checkout UI interaction
-                this.disabled = true;
-                this.innerText = "Opening Secure Terminal...";
-
-                // Optional: Prompt or query for quick context details if you aren't using an input form block
-                const customerName = prompt("Please enter your full name for order mapping:") || "Anonymous Contributor";
-                const customerEmail = prompt("Please enter your email address for your payment receipt:") || "no-email@kcb14.co.za";
-
-                try {
-                    // Call your Vercel backend function directly relative to your production host domain
-                    const response = await fetch('/api/create-yoco-session', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            amountInCents: productAmountInCents,
-                            customerName: customerName,
-                            customerEmail: customerEmail,
-                            itemsOrdered: productName
-                        })
-                    });
-
-                    const sessionData = await response.json();
-
-                    if (!response.ok || !sessionData.id) {
-                        throw new Error("Unable to parse session token safely.");
-                    }
-
-                    // Execute overlay framework popup engine
-                    yoco.showPopup({
-                        id: sessionData.id,
-                        token: async (result) => {
-                            alert(`Success! Thank you for supporting the legacy fund for ${productName}.`);
-                            window.location.reload(); 
-                        },
-                        close: () => {
-                            this.disabled = false;
-                            this.innerText = initialButtonText;
+            button.addEventListener('click', () => {
+                yoco.showPopup({
+                    amountInCents: button.dataset.amount,
+                    currency: 'ZAR',
+                    name: button.dataset.name,
+                    description: 'Contribution to KCB14 Memorial Legacy Fund',
+                    callback: (result) => {
+                        if (result.error) {
+                            alert("Payment failed: " + result.error.message);
+                        } else {
+                            alert("Thank you for your contribution!");
                         }
-                    });
-
-                } catch (err) {
-                    console.error("Payment initialization failed:", err);
-                    alert("We ran into an error setting up your secure session. Please try again.");
-                    this.disabled = false;
-                    this.innerText = initialButtonText;
-                }
+                    }
+                });
             });
         });
     </script>
