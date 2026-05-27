@@ -893,10 +893,10 @@
 
     // --- AUTOPLAY BACKGROUND SLIDER ENGINE ---
     const sliderImages = [
-        "images/WhatsApp Image 2026-03-23 at 11.25.02 AM (2).jpg",
-        "images/WhatsApp Image 2026-03-23 at 11.25.03 AM (3).jpg",
-        "images/WhatsApp Image 2026-03-23 at 11.25.05 AM (3).jpg",
-        "images/WhatsApp Image 2026-03-23 at 11.25.02 AM (2).jpg"
+        "images/kcb1.jpg",
+        "images/kcb2.jpg",
+        "images/kcb3.jpg",
+        "images/kcb4.jpg"
     ];
 
     const sliderContainer = document.getElementById('hero-slider');
@@ -950,7 +950,6 @@
         button.addEventListener('click', async function () {
 
             const amount = parseInt(this.dataset.amount);
-
             const productName = this.dataset.name;
 
             const originalText = this.innerText;
@@ -961,39 +960,32 @@
                 this.disabled = true;
                 this.innerText = 'Loading Checkout...';
 
-                const response = await fetch('/api/create-yoco', {
-
+                const response = await fetch('/api/create-yoco-session', {
                     method: 'POST',
-
                     headers: {
                         'Content-Type': 'application/json'
                     },
-
                     body: JSON.stringify({
                         amount,
                         productName
                     })
-
                 });
 
                 const data = await response.json();
 
-                if (data.redirectUrl) {
+                // FIX: support both possible Yoco response formats
+                const url = data.redirectUrl || data.checkoutUrl;
 
-                    window.location.href = data.redirectUrl;
-
+                if (url) {
+                    window.location.href = url;
                 } else {
-
                     alert('Unable to create payment checkout.');
-
-                    console.error(data);
-
+                    console.error('Yoco response:', data);
                 }
 
             } catch (error) {
 
                 console.error(error);
-
                 alert('Something went wrong creating checkout.');
 
             } finally {
