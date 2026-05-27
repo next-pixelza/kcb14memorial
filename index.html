@@ -194,23 +194,18 @@
         }
 
         .slide {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background-color: #050505;
-            opacity: 0;
-            transition: opacity 1.2s ease-in-out;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: #050505;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
     background-size: contain;
-    background-position: center;
+    background-position: center center;
     background-repeat: no-repeat;
 }
-        }
-
-        .slide.active {
-            opacity: 1;
-        }
 
         .hero::before {
             content: '';
@@ -894,67 +889,125 @@
     </footer>
 
     <script>
-        // --- CONFIG DATA FOR MEMORIAL ---
-        const amountRaised = 0;  
-        const targetGoal = 150000;
+    // --- CONFIG DATA FOR MEMORIAL ---
+    const amountRaised = 0;
+    const targetGoal = 150000;
 
-        // --- AUTOPLAY BACKGROUND SLIDER ENGINE ---
-        const sliderImages = [
-            "images/WhatsApp Image 2026-03-23 at 11.25.03 AM (1).jpg",
-            "images/WhatsApp Image 2026-03-23 at 11.25.03 AM (3).jpg",
-            "images/WhatsApp Image 2026-03-23 at 11.25.05 AM (3).jpg",
-            "images/WhatsApp Image 2026-03-23 at 11.25.02 AM (2).jpg"
-        ];
+    // --- AUTOPLAY BACKGROUND SLIDER ENGINE ---
+    const sliderImages = [
+        "images/WhatsApp Image 2026-03-23 at 11.25.03 AM (1).jpg",
+        "images/WhatsApp Image 2026-03-23 at 11.25.03 AM (3).jpg",
+        "images/WhatsApp Image 2026-03-23 at 11.25.05 AM (3).jpg",
+        "images/WhatsApp Image 2026-03-23 at 11.25.02 AM (2).jpg"
+    ];
 
-       const sliderContainer = document.getElementById('hero-slider');
-    
-    // Create elements dynamically
+    const sliderContainer = document.getElementById('hero-slider');
+
+    // CREATE SLIDES
     sliderImages.forEach((src, index) => {
+
         const slide = document.createElement('div');
-        slide.className = `slide ${index === 0 ? 'active' : ''}`;
-        slide.style.backgroundImage = `url('${src}')`;
-        // Ensure image covers the area properly
+
+        slide.classList.add('slide');
+
+        if (index === 0) {
+            slide.classList.add('active');
+        }
+
+        slide.style.backgroundImage = `url("${src}")`;
+
         sliderContainer.appendChild(slide);
+
     });
 
-    // Slider logic
+    // SLIDER LOGIC
     let currentSlide = 0;
-    setInterval(() => {
-        const slides = document.querySelectorAll('.slide');
-        slides[currentSlide].classList.remove('active');
-        currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
-    }, 5000);;
 
-        // --- PROGRESS BAR INITIALIZATION ---
-        const progressFill = document.getElementById('progress-fill');
-        const percentage = (amountRaised / targetGoal) * 100;
-        progressFill.style.width = `${percentage}%`;
+    const slides = document.querySelectorAll('.slide');
 
-        // --- YOCO SDK INTEGRATION ---
-        const yoco = new window.YocoSDK({
-            publicKey: 'pk_live_c22d9aa2kw60Rvjbb344' // Replace with your actual Yoco public key
-        });
+    if (slides.length > 0) {
 
-      document.querySelectorAll('.yoco-checkout-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const amount = parseInt(this.getAttribute('data-amount'));
-            const name = this.getAttribute('data-name');
+        setInterval(() => {
 
-            yoco.showPopup({
-                amountInCents: amount,
-                currency: 'ZAR',
-                name: 'KCB14 Memorial',
-                description: name,
-                callback: (result) => {
-                    if (result.error) {
-                        alert("Payment Error: " + result.error.message);
-                    } else {
-                        alert("Donation successful! Thank you.");
-                    }
+            slides[currentSlide].classList.remove('active');
+
+            currentSlide = (currentSlide + 1) % slides.length;
+
+            slides[currentSlide].classList.add('active');
+
+        }, 5000);
+
+    }
+
+    // --- PROGRESS BAR INITIALIZATION ---
+    const progressFill = document.getElementById('progress-fill');
+
+    const percentage = (amountRaised / targetGoal) * 100;
+
+    progressFill.style.width = `${percentage}%`;
+
+    // --- YOCO CHECKOUT INTEGRATION USING VERCEL API ---
+    document.querySelectorAll('.yoco-checkout-btn').forEach(button => {
+
+        button.addEventListener('click', async function () {
+
+            const amount = parseInt(this.dataset.amount);
+
+            const productName = this.dataset.name;
+
+            const originalText = this.innerText;
+
+            try {
+
+                // LOADING STATE
+                this.disabled = true;
+                this.innerText = 'Loading Checkout...';
+
+                const response = await fetch('/api/create-yoco', {
+
+                    method: 'POST',
+
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+
+                    body: JSON.stringify({
+                        amount,
+                        productName
+                    })
+
+                });
+
+                const data = await response.json();
+
+                if (data.redirectUrl) {
+
+                    window.location.href = data.redirectUrl;
+
+                } else {
+
+                    alert('Unable to create payment checkout.');
+
+                    console.error(data);
+
                 }
-            });
+
+            } catch (error) {
+
+                console.error(error);
+
+                alert('Something went wrong creating checkout.');
+
+            } finally {
+
+                this.disabled = false;
+                this.innerText = originalText;
+
+            }
+
         });
+
     });
 </script>
 </body>
+</html>
