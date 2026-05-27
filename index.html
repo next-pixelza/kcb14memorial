@@ -172,7 +172,7 @@
             width: 100%;
         }
 
-        /* --- IMMERSIVE BACKGROUND SLIDER (NON-CRUSHED) --- */
+        /* --- IMMERSIVE BACKGROUND SLIDER --- */
         .hero {
             position: relative;
             height: 85vh;
@@ -196,10 +196,10 @@
             height: 100%;
             top: 0;
             left: 0;
-            background-size: contain; /* Ensures complete slider visuals are fully viewable */
+            background-size: cover; /* Shifted to cover for main background immersion, switch back to contain if frames are strict */
             background-repeat: no-repeat;
             background-position: center;
-            background-color: #050505; /* Seamless letterboxing fill */
+            background-color: #050505;
             opacity: 0;
             transition: opacity 1.2s ease-in-out;
         }
@@ -852,7 +852,7 @@
                 </div>
                 <div>
                     <span class="price">R 350</span>
-                    <a href="https://pay.yoco.com/r/2wgAvn" target="_blank" class="btn btn-dark btn-merch">Purchase Jersey</a>
+                    <a href="https://pay.yoco.com/r/2wgAVn" target="_blank" class="btn btn-dark btn-merch">Purchase Jersey</a>
                 </div>
             </div>
             <div class="merch-card">
@@ -891,56 +891,43 @@
     <script>
         // --- CONFIG DATA FOR MEMORIAL ---
         const amountRaised = 0;  
-        const targetGoal = 15000;
+        const targetGoal = 150000; // Fixed zero structure matching display element text
 
         // --- AUTOPLAY BACKGROUND SLIDER ENGINE ---
-        // Replace strings inside this array with your absolute image paths
         const sliderImages = [
-            'WhatsApp Image 2026-03-23 at 11.25.03 AM (1).jpg',
-            'WhatsApp Image 2026-03-23 at 11.25.03 AM (3).jpg',
-            'WhatsApp Image 2026-03-23 at 11.25.05 AM (3).jpg',
-            'WhatsApp Image 2026-03-23 at 11.25.02 AM (2).jpg',
-            'WhatsApp Image 2026-03-23 at 11.25.05 AM (1).jpg',
-            'WhatsApp Image 2026-03-23 at 11.25.04 AM (1).jpg'
+            'images/WhatsApp Image 2026-03-23 at 11.25.03 AM (1).jpg',
+            'images/WhatsApp Image 2026-03-23 at 11.25.03 AM (3).jpg',
+            'images/WhatsApp Image 2026-03-23 at 11.25.05 AM (3).jpg',
+            'images/WhatsApp Image 2026-03-23 at 11.25.02 AM (2).jpg'
         ];
 
-        const sliderContainer = document.getElementById("hero-slider");
+        const sliderContainer = document.getElementById('hero-slider');
+        let currentSlide = 0;
 
-        if (sliderImages.length > 0) {
-            sliderImages.forEach((imageSrc, index) => {
-                const slide = document.createElement("div");
-                slide.classList.add("slide");
-                if (index === 0) slide.classList.add("active");
-                slide.style.backgroundImage = `url('${imageSrc}')`;
-                sliderContainer.appendChild(slide);
-            });
+        // Render slides dynamically
+        sliderImages.forEach((imgUrl, idx) => {
+            const slideDiv = document.createElement('div');
+            slideDiv.classList.add('slide');
+            if (idx === 0) slideDiv.classList.add('active');
+            slideDiv.style.backgroundImage = `url('${imgUrl}')`;
+            sliderContainer.appendChild(slideDiv);
+        });
 
-            let currentSlideIndex = 0;
-            const slides = document.querySelectorAll(".slide");
-
+        // Rotate engine loop
+        if (sliderImages.length > 1) {
             setInterval(() => {
-                slides[currentSlideIndex].classList.remove("active");
-                currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-                slides[currentSlideIndex].classList.add("active");
-            }, 5000); // Transitions slide image every 5 seconds
+                const slides = document.querySelectorAll('.slide');
+                slides[currentSlide].classList.remove('active');
+                currentSlide = (currentSlide + 1) % slides.length;
+                slides[currentSlide].classList.add('active');
+            }, 5000);
         }
 
-        // --- TRACKER METRICS ENGINE ---
-        document.addEventListener("DOMContentLoaded", () => {
-            const raisedText = document.getElementById("raised-text");
-            const progressFill = document.getElementById("progress-fill");
-            
-            // Calculate progress percentage accurately
-            const percentage = Math.min((amountRaised / targetGoal) * 100, 100);
-            
-            // Render numeric metrics smoothly
-            raisedText.textContent = `R ${amountRaised.toLocaleString('en-ZA')}`;
-            
-            // Trigger layout animation transition
-            setTimeout(() => {
-                progressFill.style.width = `${percentage}%`;
-            }, 300);
-        });
+        // --- SET TRACKER ELEMENTS VALUE ---
+        document.getElementById('raised-text').innerText = `R ${amountRaised.toLocaleString()}`;
+        document.getElementById('goal-text').innerText = `R ${targetGoal.toLocaleString()}`;
+        const calculationPercentage = Math.min((amountRaised / targetGoal) * 100, 100);
+        document.getElementById('progress-fill').style.width = `${calculationPercentage}%`;
     </script>
 </body>
 </html>
