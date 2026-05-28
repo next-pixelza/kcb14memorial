@@ -1867,21 +1867,9 @@ nav a:hover {
 
 
 
-    <script>
-
-        // --- CONFIG DATA FOR MEMORIAL ---
-
-        const amountRaised = 0;  
-
-        const targetGoal = 150000;
-
-
-
-        // --- AUTOPLAY BACKGROUND SLIDER ENGINE ---
-
-       <script>
-    // --- CONFIG DATA FOR MEMORIAL ---
-    const amountRaised = 0;  
+   <script>
+    // --- CONFIG ---
+    const amountRaised = 0;
     const targetGoal = 150000;
 
     // --- SLIDER ---
@@ -1899,8 +1887,6 @@ nav a:hover {
         const slide = document.createElement('div');
         slide.className = `slide ${index === 0 ? 'active' : ''}`;
         slide.style.backgroundImage = `url('${src}')`;
-        slide.style.backgroundSize = 'cover';
-        slide.style.backgroundPosition = 'top center';
         sliderContainer.appendChild(slide);
     });
 
@@ -1918,7 +1904,7 @@ nav a:hover {
     const percentage = (amountRaised / targetGoal) * 100;
     progressFill.style.width = `${percentage}%`;
 
-    // --- HAMBURGER MENU (FIXED) ---
+    // --- HAMBURGER MENU ---
     const hamburger = document.getElementById("hamburger");
     const navMenu = document.getElementById("nav-menu");
 
