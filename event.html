@@ -83,6 +83,7 @@
 
         /* --- HEADER --- */
         header {
+    position: relative;
             background-color: var(--pure-black);
             padding: 20px 4%;
             display: flex;
@@ -317,11 +318,15 @@
     color: var(--pure-white);
 }
 
-/* MOBILE NAV */
+/* MOBILE */
 @media (max-width: 768px) {
 
     .hamburger {
         display: block;
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
         z-index: 2001;
     }
 
@@ -334,6 +339,7 @@
         display: none;
         flex-direction: column;
         border-top: 1px solid rgba(255,255,255,0.1);
+        z-index: 2000;
     }
 
     nav.active {
@@ -342,7 +348,6 @@
 
     nav ul {
         flex-direction: column;
-        gap: 0;
         display: flex;
         padding: 0;
     }
@@ -464,7 +469,7 @@
         <p class="footer-tagline">Built on Legacy, Driven by Passion</p>
         <p class="footer-sub">The KCB Memorial Day</p>
     </footer>
-    <script>
+   <script>
 const hamburger = document.getElementById("hamburger");
 const nav = document.querySelector("nav");
 
