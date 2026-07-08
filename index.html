@@ -1343,7 +1343,213 @@ nav a:hover {
         .footer-tagline { font-weight: 700; text-transform: uppercase; letter-spacing: 2px; font-size: 1.1rem; margin-bottom: 10px; }
 
         .footer-sub { color: var(--text-muted); font-size: 0.85rem; letter-spacing: 1px; }
+/* ============================= */
+/* COMPETITION SECTION */
+/* ============================= */
 
+.competition-section{
+
+    background:#111;
+
+    padding:100px 5%;
+
+    text-align:center;
+
+    border-top:4px solid var(--primary-red);
+
+    border-bottom:4px solid var(--primary-red);
+
+}
+
+.competition-container{
+
+    max-width:1200px;
+
+    margin:auto;
+
+}
+
+.competition-badge{
+
+    display:inline-block;
+
+    background:var(--primary-red);
+
+    color:#fff;
+
+    padding:10px 24px;
+
+    border-radius:50px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    margin-bottom:25px;
+
+}
+
+.competition-section h2{
+
+    font-size:3.8rem;
+
+    margin-bottom:20px;
+
+}
+
+.competition-section h2 span{
+
+    color:var(--primary-red);
+
+}
+
+.competition-intro{
+
+    max-width:800px;
+
+    margin:auto;
+
+    font-size:1.3rem;
+
+    color:#ddd;
+
+    margin-bottom:60px;
+
+}
+
+.competition-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
+
+    margin-bottom:60px;
+
+}
+
+.competition-card{
+
+    background:#1a1a1a;
+
+    padding:40px;
+
+    border-radius:8px;
+
+    border:1px solid #333;
+
+    transition:.35s;
+
+}
+
+.competition-card:hover{
+
+    transform:translateY(-10px);
+
+    border-color:var(--primary-red);
+
+}
+
+.competition-card .icon{
+
+    font-size:60px;
+
+    margin-bottom:20px;
+
+}
+
+.competition-card h3{
+
+    margin-bottom:15px;
+
+}
+
+.competition-card p{
+
+    color:#bbb;
+
+}
+
+.competition-prize{
+
+    background:#181818;
+
+    padding:50px;
+
+    border-radius:10px;
+
+    border:2px solid var(--primary-red);
+
+    margin-bottom:50px;
+
+}
+
+.competition-prize h3{
+
+    color:var(--primary-red);
+
+    margin-bottom:20px;
+
+}
+
+.competition-prize h1{
+
+    font-size:5rem;
+
+    color:white;
+
+}
+
+.competition-rules{
+
+    max-width:700px;
+
+    margin:0 auto 50px;
+
+    text-align:left;
+
+}
+
+.competition-rules h3{
+
+    text-align:center;
+
+    margin-bottom:25px;
+
+}
+
+.competition-rules ul{
+
+    list-style:none;
+
+}
+
+.competition-rules li{
+
+    padding:14px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.08);
+
+    color:#ddd;
+
+}
+
+@media(max-width:768px){
+
+.competition-section h2{
+
+font-size:2.5rem;
+
+}
+
+.competition-prize h1{
+
+font-size:3rem;
+
+}
+
+}
 
     </style>
 
@@ -1446,6 +1652,119 @@ nav a:hover {
         </div>
 
     </section> 
+
+    <!-- ========================= -->
+<!-- FIRST 20 DONATION CHALLENGE -->
+<!-- ========================= -->
+
+<section class="competition-section" id="competition">
+
+    <div class="competition-container">
+
+        <span class="competition-badge">
+            🔥 LIMITED TIME CHALLENGE
+        </span>
+
+        <h2>
+            BE ONE OF THE FIRST <span>20</span> DONORS
+        </h2>
+
+        <p class="competition-intro">
+            Donate <strong>R200 or more</strong> today and you could walk away
+            with an incredible
+            <strong>Weekend Away for Two valued at R8,000.</strong>
+        </p>
+
+        <div class="competition-grid">
+
+            <div class="competition-card">
+
+                <div class="icon">💳</div>
+
+                <h3>Donate</h3>
+
+                <p>
+                    Donate a minimum of
+                    <strong>R200</strong>
+                    to the KCB14 Legacy Fund.
+                </p>
+
+            </div>
+
+            <div class="competition-card">
+
+                <div class="icon">🏷️</div>
+
+                <h3>Reference</h3>
+
+                <p>
+                    Use the payment reference:
+                    <br><br>
+                    <strong>KCB14 YOUR NAME</strong>
+                    <br><br>
+                    Example:
+                    <br>
+                    KCB14 Danielle
+                </p>
+
+            </div>
+
+            <div class="competition-card">
+
+                <div class="icon">🏆</div>
+
+                <h3>You're In!</h3>
+
+                <p>
+                    The <strong>first 20 payments to reflect</strong>
+                    automatically qualify for the draw.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div class="competition-prize">
+
+            <h3>🎁 WIN A WEEKEND AWAY FOR TWO</h3>
+
+            <p>
+                Prize Value:
+            </p>
+
+            <h1>R8,000</h1>
+
+        </div>
+
+        <div class="competition-rules">
+
+            <h3>Competition Rules</h3>
+
+            <ul>
+
+                <li>✔ Minimum donation: <strong>R200</strong></li>
+
+                <li>✔ Payment reference must include <strong>KCB14</strong> and <strong>Your Name</strong></li>
+
+                <li>✔ Only the <strong>first 20 donations received</strong> qualify.</li>
+
+                <li>✔ Entries are based on the order funds reflect.</li>
+
+                <li>✔ Winner will be selected LIVE during the Memorial Day.</li>
+
+                <li>✔ Every qualifying donation helps support Kyle's family and legacy.</li>
+
+            </ul>
+
+        </div>
+
+        <a href="#donate" class="btn btn-primary">
+            Donate Now
+        </a>
+
+    </div>
+
+</section>
 
  <div class="logistics-bar">
 
